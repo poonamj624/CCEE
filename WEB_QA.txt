@@ -1,0 +1,31 @@
+1.	What is HTML5?
+2.	What is < !DOCTYPE>? Is it necessary to use in HTML5?
+3.	List out the new features of HTML5?
+4. What is use of HTML and CSS
+4.	List out the advantages of HTML5?
+4. What is HTTP protocol?
+4. what is HTTPS
+
+5. Explain why you prefer Bootstrap for website development?
+5. What is JavaScript?
+6. Name the types of functions
+7. Define closure.
+8.What is the difference between == and ===?
+9.What is jQuery?
+10. What is the advantage of using minimized version of jQuery?
+11. What are the basic selectors in jQuery?
+12. What is CDN?
+13. What is the difference between onload() and document.ready()?
+14. What is Component  ? How do you declare them?
+1
+20. Explain what is JSON objects?
+21. Why must one use JSON over XML?
+22. Mention what are the data types supported by JSON?
+
+26.What s the difference between  ==  and  === ?
+27. Compare the  include()  and  require()  functions through how they deal with possible issues within the code.
+2
+31.What is Ajax?What are all the features of Ajax?
+32.What is node.js?
+33.What is the advantage of using node.js?
+34.What are the pros and cons of Node.js?
