@@ -1,0 +1,113 @@
+Q-1. Write an SQL query to fetch “FIRST_NAME” from Worker table using the alias name as <WORKER_NAME>.
+
+select first_name as WORKER_NAME FROM WORKER;
+ 
+Q-2. Write an SQL query to fetch “FIRST_NAME” from Worker table in upper case.
+
+select upper(first_name) from worker;
+
+Q-3. Write an SQL query to fetch unique values of DEPARTMENT from Worker table.
+ 
+select distinct department from worker;
+
+Q-4. Write an SQL query to print the FIRST_NAME and LAST_NAME from Worker table into a single column COMPLETE_NAME. A space char should separate them.
+ 
+select concat(first_name,' ' ,last_name) COMPLETE_NAME FROM WORKER;
+
+Q-5. Write an SQL query to print all Worker details from the Worker table order by FIRST_NAME Ascending.
+
+select * from worker
+order by first_name;
+ 
+Q-6. Write an SQL query to print all Worker details from the Worker table order by FIRST_NAME Ascending and DEPARTMENT Descending.
+
+select * from worker
+order by first_name asc,department desc;
+
+Q-7. Write an SQL query to print details for Workers with the first name as “Vipul” and “Satish” from Worker table.
+
+select * from worker where first_name in('vipul','satish');
+
+select * from worker
+where first_name='vipul' or first_name='satish';
+
+ 
+Q-8. Write an SQL query to print details of workers excluding first names, “Vipul” and “Satish” from Worker table.
+
+select * from worker where first_name not in('vipul','satish');
+
+select * from worker
+where first_name!='vipul' and first_name!='satish';
+
+Q-9. Write an SQL query to print details of Workers with DEPARTMENT name as “Admin”.
+
+select * from worker
+where department='Admin';
+ 
+Q-10. Write an SQL query to print details of the Workers whose FIRST_NAME contains ‘a’.
+
+select * from worker
+where first_name like 'a%';
+ 
+Q-11. Write an SQL query to print details of the Workers whose FIRST_NAME ends with ‘a’.
+
+select * from worker
+where first_name like '%a';
+ 
+Q-12. Write an SQL query to print details of the Workers whose FIRST_NAME ends with ‘h’ and contains six alphabets.
+
+select * from worker
+where first_name like '_____h';
+ 
+Q-13. Write an SQL query to print details of the Workers whose SALARY lies between 100000 and 500000.
+
+select * from worker
+where salary between 100000 and 500000;
+
+ 
+Q-14. Write an SQL query to print details of the Workers who have joined in Feb’2014.
+
+select * from worker
+where joining_date like '2014-02-%';
+ 
+Q-15. Write an SQL query to fetch the count of employees working in the department ‘Admin’.
+
+select count(*) as CountA from worker
+where department='Admin';
+
+Q-16. Write an SQL query to fetch worker names with salaries >= 50000 and <= 100000.
+
+select first_name,salary from worker
+where salary>=50000 and salary<=100000; 
+
+Q-17. Write an SQL query to fetch the no. of workers for each department in the descending order.
+
+select department,count(*)as number from worker
+group by department
+order by number desc;
+
+
+Q-18. Write an SQL query to print details of the Workers who are also Managers.
+
+select w.*,t.worker_title from worker w join title t
+on w.worker_id=t.worker_ref_id
+where t.worker_title='manager';
+ 
+Q-19. Write an SQL query to fetch duplicate records having matching data in some fields of a table.
+
+select worker_title,affected_from,count(*) from title
+group by worker_title,affected_from
+having count(*)>1;
+
+select worker_ref_id,bonus_date,count(*) from bonus
+group by worker_ref_id,bonus_date
+having count(*)>1;
+
+select bonus_date,count(*) from bonus
+group by bonus_date
+having count(*)>1;
+
+
+Q-20. Write an SQL query to show only odd rows from a table.
+
+select * from worker where mod(worker_id,2)<>0;

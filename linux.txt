@@ -1,0 +1,141 @@
+#!/bin/Bash
+
+
+i=1
+ while((i<=10))
+do
+    echo $i
+    i=$((i+1))
+ 
+done
+........................................................
+cat***
+................................
+ctrl+d...........exit
+cat>vita.txt .......create new or override old
+cat>>vita.txt.........create new if not available & append if avaailable
+cat newfile.txt.............show data
+head..........default first 10
+grep.......
+pwd..............to print current working directory
+***
+paths..........absolute(root to dest) & relative(any subdir to destinaation)
+cd        --------------change directory
+cd ..       -----------a level up dir(previous)
+cd-       ------------re enter to the last(next)
+
+
+windows..........c:\\--------
+linux...............c:/
+
+
+rm  ......remove command
+cp  ........copy
+-r           .................delete empty dir
+-rf          .................if not empty
+
+mv      ...........need to give absolute path
+--------------------------------------------------------------------------------------------
+man    ............manual cmd
+
+to know any command's datail basic details and options <command>
+man      ....mannual
+-------------------------------------------------------------------------------------
+sudo   ...........super user command
+---------------------------------------------------------------------
+ps       ...................show current process
+------------------------------------------------------------------------------
+identifier---->
+name given to some memory location/data to refere and access
+eg.your name
+................................................................
+
+ps   ...............gives process id
+kill     .................
+
+ping    ...............checks for connectivity
+-t    ...............test
+127.0.0.1
+local host
+ping 127.0.0.1 -t
+-----------------------------------------------------------------------------------
+passwd     ............current password
+................................................................................................................................................................
+
+ touch.........creates one & multiple blanck files
+diff between touch & 
+
+
+==================================
+nano cmd
+............................................................................
+
+default current directory------------------->bin
+
+--help    -------------basic options
+man   -----------deatails manual
+where     ----------------
+whatis 	--------------------
+................................................................................
+wc   -----------no. of words
+------->no.lines-words-characters with space
+.....................................................................
+
+uname   ----------->
+
+...............................................................................
+jar ....in java
+tar  .....in linux
+
+....................................
+grep:talks about content of file,data extraction from file that maches the pattern
+   
+  grep"pattern"file
+
+vs
+
+find: talks about file and dir,extract list of files that matches
+
+..............................................................................................................
+..........................................................................................................
+grep..........content of file
+
+
+grep -r "is" dir
+grep -v "file.txt return all line not having "is"
+grep -c "is" file.txt returns count of total number of lines that matches pattern
+grep "this" myfile.txt
+grep "$this" myfile.txt
+grep "RE Pattern" file.txt  eg. grep "[0-9]" myfile.txt      grep "[A-Z]" myfile.txt
+ grep "\d{2}" myfile.txt
+ grep "\d{3}" myfile.txt
+ grep -e "do" -e "go" myfile.txt .....multiple patterns
+grep -n "pattern" file.txt return data with line number it is found
+.........................................................................................
+
+find----------> finds file or directory or both searches on basis of pattern
+
+find -name "name of the file"        eg.find -name "my"
+			find -name "myfile.txt"
+
+find file on name
+find -name "name of file.txt"
+will only search directories
+find -type d #all directories
+find "what to search for" -type d #searches directory  eg.find -name "*.sh"
+
+list all files on time like in last 7 days
+//find -mtime -7
+
+find -size -1k 
+
+Q.write script to print user hostname, date,uptime of system
+----->
+who am i
+
+nano myscript.txt
+
+...........................................................................................
+.............................................................................................................
+home work....commands
+

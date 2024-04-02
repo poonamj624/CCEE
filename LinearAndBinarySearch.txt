@@ -1,0 +1,85 @@
+LinearSearch---------->
+package Day5;
+
+import java.util.Scanner;
+
+public class LinearSearch 
+{
+	//int a;
+	int search(int arr[],int key)
+	{
+		for(int i=0;i<arr.length;i++)
+		{
+			if(arr[i]==key)
+				return 1;
+				
+		}
+		return -1;
+		
+	}
+
+	public static void main(String[] args)
+	{
+		
+		int arr[]= {2,4,1,6,7,9,8,5,15,24};
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter key to search: ");
+		int key=sc.nextInt();
+		LinearSearch obj=new LinearSearch();
+		int result=obj.search(arr,key);
+		if(result==1)
+			System.out.println("found");
+		else
+			System.out.println("not found");
+	}
+
+}
+-----------------------------------------------------------------------------------------------------------
+BinarySearch------------>
+
+package Day5;
+
+import java.util.Scanner;
+
+public class BinarySearch
+{
+	int binarySearch(int a[],int key,int start,int end)
+    {
+        if(key<a[start] || key>a[end])
+            return(-1);
+        else
+        {
+        if(start<=end)
+        {
+            System.out.println("Pass");
+            int mid=(start+end)/2;
+            if(key==a[mid])
+                return mid;
+            else
+            {
+                if(key<a[mid])
+                    return binarySearch(a,key,start,mid-1);
+                else
+                    return binarySearch(a,key,mid+1,end);
+            }
+        }
+        else
+            return(-1);
+        }
+    }
+    public static void main(String args[])//main
+    {
+         //create array of 10 random numbers
+        int a[]={22,11,55,77,33,99,1,45,67,98};
+        BinarySearch object=new BinarySearch();
+        Scanner in=new Scanner(System.in);
+        System.out.println("Enter key to serach:");
+        int key=in.nextInt();
+        int result=object.binarySearch(a,key,0,a.length-1);
+        if (result==-1)
+            System.out.println(key+"Not Found");
+        else
+            System.out.println(key+" Found at "+result);
+    }
+}
+

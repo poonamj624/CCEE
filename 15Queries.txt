@@ -1,0 +1,93 @@
+Q-1. Write an SQL query to determine the nth (say n=5) highest salary from a table.
+
+select * from worker
+order by salary desc limit 4,1;
+
+select * from worker
+order by salary desc limit 1 offset 4;
+
+Q-2. Write an SQL query to determine the 5th highest salary without using TOP or limit method.
+ 
+select * from
+(select *,(rank() over(order by salary desc)) m
+from worker) as n
+where m=5;
+
+Q-3. Write an SQL query to fetch the list of employees with the same salary.
+ table.
+
+select w.worker_id,w.first_name,w.salary from worker w,worker v
+where w.salary=v.salary and w.first_name!=v.first_name;
+
+select worker_id,first_name,salary from worker o
+where exists ( select 1 from worker e where o.salary=e.salary and o.first_name!=e.first_name );
+
+Q-4. Write an SQL query to show one row twice in results from worker table.
+
+select * from
+(select * from worker union all select * from worker) as a
+order by worker_id asc;
+ 
+Q-5. Write an SQL query to fetch the first 50% records from worker table.
+
+select * from worker where worker_id>(select count(worker_id)/2 from worker);
+ 
+Q-6. Write an SQL query to fetch the departments that have less than five people in it.
+
+select department,count(worker_id) number from worker
+group by department having count(worker_id)<5 ;
+
+select department,count(*) number from worker
+group by department having count(*)<5 ;
+
+
+Q-7. Write an SQL query to show all departments along with the number of people in there.
+ 
+select department,count(worker_id) number from worker
+group by department ;
+
+Q-8. Write an SQL query to show the last record from worker table.
+
+select * from worker
+where worker_id=(select max(worker_id) from worker);
+
+Q-9. Write an SQL query to fetch the first row of a worker  table.
+
+ select * from worker
+where worker_id=(select min(worker_id) from worker);
+
+Q-10. Write an SQL query to fetch the last five records from worker table.
+
+select * from worker
+order by worker_id desc limit 5;
+ 
+Q-11. Write an SQL query to print the name of employees having the highest salary in each department.
+
+select w.first_name,w.department,w.salary from(select department,max(salary) m from worker group by department)as b inner join worker w
+on b.department=w.department and b.m=w.salary;
+
+
+Q-12. Write an SQL query to fetch three max salaries from a table.
+
+select * from worker
+order by salary desc limit 3;
+
+ 
+Q-13. Write an SQL query to fetch three min salaries from a table.
+
+select * from worker
+order by salary limit 3;
+
+ 
+Q-14. Write an SQL query to fetch nth max salaries from a table.
+
+select * from worker
+order by salary desc limit n-1,1;
+
+ 
+Q-15. Write an SQL query to fetch departments along with the total salaries paid for each of them.
+
+select department,sum(salary) sum 
+from worker
+group by department;
+

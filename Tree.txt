@@ -1,0 +1,76 @@
+Binary Tree
+
+• Terms
+• Depth
+• Height
+• Subtree
+• Ancestor
+• Leaf node
+• Root node
+•
+
+Types of Binary Tree
+
+• Complete
+• Nearly complete
+• Strict
+• Binary Search Tree
+
+------------------------
+Threaded Tree
+
+• Inorder traversal of a Binary tree
+can either be done using recursion
+or with the use of a auxiliary stack.
+The idea of threaded binary trees is
+to make inorder traversal faster and
+do it without stack and without
+recursion. A binary tree is made
+threaded by making all right child
+pointers that would normally be
+NULL point to the inorder successor
+of the node (if it exists).
+
+Threaded Tree
+
+• Single Threaded: Where a NULL
+right pointers is made to point
+to the inorder successor (if
+successor exists)
+
+Threaded Tree
+
+• Double Threaded: Where both
+left and right NULL pointers are
+made to point to inorder
+predecessor and inorder
+successor respectively. The
+predecessor threads are useful
+for reverse inorder traversal and
+postorder traversal.
+--------------------------------------------------------
+
+B-Tree
+• B-Tree is a self-balancing search tree.
+• Single node consist multiple elements this reduces number of read write and
+memory swaps.
+• the B-Tree node size is kept equal to the disk block size
+• All leaves are at the same level.
+• B-Tree is defined by the term minimum degree ‘M‘.
+• M is odd.
+• On Order M:
+• Maximum M-1 elements at a node
+• Minimum M/2 elements at a node
+• Split when M elements reached
+• All keys of a node are sorted in increasing order.
+• B-Tree grows and shrinks from the root which is unlike Binary Search Tree.
+• Like other balanced Binary Search Trees, the time complexity to search, insert
+and delete is O(log n).
+• Insertion of a Node in B-Tree happens only at Leaf Node in order and BST form.
+
+----------------------
+BST IMPLEMENTATION
+
+• Static Array
+• Dynamic Linked List
+• Dynamic Tree node

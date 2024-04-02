@@ -1,0 +1,456 @@
+ON MEMORY: STATIC V/S DYNAMIC
+STATIC
+memory allocated at compile time
+easy to assign ex: int a[]=new int[10]
+memory was asked on basis of predication
+not memory efficient once assigned can not be altered
+mostly:stack,queue,graph
+DYNAMIC
+memory allocated at run time
+need command to give ex: int *p=malloc(sizeof(int))
+memory assigned on basis of demand
+memory efficient as one can alter at runtime
+mostly:Linked list,tree
+
+
+ON ACCESS:
+LINEAR
+one after other accessed in sequnce,easy to
+code,slow due to access method
+stack,queue,linked list
+NON-LINER
+for access direct/guided(function),fast in
+access,complex to code due to needs
+tree(guided),graph(direct)
+----------------------------------------------------------------------------------
+ADT:
+Abstract Data Type:
+set of operation one must code to implement a
+data structure. Data structure is complex and hence one can not
+use normal operations hence coder need to code
+needed operations. OOPS: encapsulation+abstarction
+--------------------------------------------------------------------------------------
+Stack ADT:
+createStack(size):
+push(e):
+pop():element
+peek():element:top most
+print_stack():lifo
+is_empty():T/F
+is_full():T/F
+
+----------------------------------Example----------------------------------
+Day 1
+
+StackExample.java
+
+import java.util.Scanner;
+public class StackExample 
+{
+    int stack[],tos,MaxSize;
+    
+    void createStack(int size)
+    {
+        stack=new int[size];
+        MaxSize=size;
+        tos=-1;
+    }
+    void push(int e)
+    {
+        tos++;
+        stack[tos]=e;
+        //or stack[++tos]=e;
+    }
+    int pop()
+    {
+        int temp=stack[tos];
+        tos--;
+        return(temp);
+    }
+    int peek()
+    {
+        return(stack[tos]);
+    }
+    boolean is_full()
+    {
+        if(tos==MaxSize-1)
+            return true;
+        else
+            return false;
+    }
+     boolean is_empty()
+    {
+        if(tos==-1)
+            return true;
+        else
+            return false;
+    }
+     
+     void print_stack()
+     {
+         for(int i=tos;i>-1;i--)
+             System.out.println(stack[i]);
+     }
+    
+     public static void main(String args[])
+     {
+         Scanner in=new Scanner(System.in);
+         System.out.println("Enter size of stack:");
+         int size=in.nextInt();
+         StackExample obj=new StackExample ();
+         obj.createStack(size);
+         int ch;
+         do
+         {
+           System.out.println("\n1.Push\n2.Pop\n3.Peek\n4.Print\n0.Exit\n:");
+           ch=in.nextInt();//read
+           switch(ch)
+           {
+               case 1:
+                   if(!obj.is_full())
+                   {
+                       System.out.println("\nEnter a number:");
+                       int no=in.nextInt();
+                       obj.push(no);
+                       System.out.println("Pushed "+no);
+                   }
+                   else
+                       System.out.println("Stack is Full");
+                   break;
+               case 2:
+                    if(!obj.is_empty())
+                   {
+                       System.out.println("Poped "+obj.pop());
+                   }
+                   else
+                       System.out.println("Stack is Empty");
+                   break;
+               case 3:
+                    if(!obj.is_empty())
+                   {
+                       System.out.println("Element at peek: "+obj.peek());
+                   }
+                   else
+                       System.out.println("Stack is Empty");
+                   break;
+               case 4:
+                    if(!obj.is_empty())
+                   {
+                       System.out.println("Elements on stack are");
+                       obj.print_stack();
+                   }
+                    else
+                       System.out.println("Stack is Empty");
+                   break;
+               case 0:
+                       System.out.println("Exiting");
+                   break;
+               default:
+                       System.out.println("Wrong Choice");
+                   break;
+           }
+             
+         }while(ch!=0);
+     }
+}
+----------------------------------------------------------------------------------------------------------
+-------------------------------------Stack_balance ---------------------------
+ckage Stack_Data;
+
+
+import java.util.Scanner;
+public class Stack_balance 
+{
+    char stack[];
+    int tos,MaxSize;
+    
+    void createStack(int size)
+    {
+        stack=new char[size];
+        MaxSize=size;
+        tos=-1;
+    }
+    void push(char e)
+    {
+        tos++;
+        stack[tos]=e;
+        //or stack[++tos]=e;
+    }
+    char pop()
+    {
+        char temp=stack[tos];
+        tos--;
+        return(temp);
+    }
+   
+    boolean is_full()
+    {
+        if(tos==MaxSize-1)
+            return true;
+        else
+            return false;
+    }
+     boolean is_empty()
+    {
+        if(tos==-1)
+            return true;
+        else
+            return false;
+    }
+     
+     void print_stack()
+     {
+         for(int i=tos;i>-1;i--)
+             System.out.println(stack[i]);
+     }
+    
+     public static void main(String args[])
+     {
+      Scanner in =new Scanner(System.in);
+      System.out.println("Enter sequence to test");
+      String line=in.nextLine();
+      Stack_balance sb=new Stack_balance();
+      sb.createStack(line.length());
+      boolean flag=true;
+      for(int i=0;i<line.length();i++)
+      {
+          char c=line.charAt(i);
+          if(c=='{')
+              sb.push(c);
+          else if(c=='}')
+          {
+              if(!sb.is_empty())
+              {
+                  char temp=sb.pop();
+              }
+              else
+              {
+                 System.out.println("} is unexpected");  
+                 flag=false;
+              }
+          }
+      }
+      if(!sb.is_empty())
+      {
+                 System.out.println("} is expected");
+      }
+      else if(flag)
+      {
+            System.out.println("Perfectly balance");
+      } 
+      //System.out.println("Entered:"+line);
+     }
+}
+---------------------------------------------------------------------------------------------------------------------
+------------------------------------Min_Stack----------------------------------
+package Stack_Data;
+
+import java.util.Scanner;
+
+public class Min_Stack
+{
+    int stack[],tos,MaxSize;
+    
+    void createStack(int size)
+    {
+        stack=new int[size];
+        MaxSize=size;
+        tos=-1;
+    }
+    void push(int e)
+    {
+        tos++;
+        stack[tos]=e;
+        //or stack[++tos]=e;
+    }
+    int pop()
+    {
+        int temp=stack[tos];
+        tos--;
+        return(temp);
+    }
+    int peek()
+    {
+        return(stack[tos]);
+    }
+    boolean is_full()
+    {
+        if(tos==MaxSize-1)
+            return true;
+        else
+            return false;
+    }
+     boolean is_empty()
+    {
+        if(tos==-1)
+            return true;
+        else
+            return false;
+    }
+     
+     void print_stack()
+     {
+         for(int i=tos;i>-1;i--)
+             System.out.println(stack[i]);
+     }
+    
+     public static void main(String args[])
+     {
+         Scanner in=new Scanner(System.in);
+         System.out.println("Enter size of stack:");
+         int size=in.nextInt();
+         Min_Stack stack=new Min_Stack();
+         stack.createStack(size);
+         Min_Stack min=new Min_Stack();
+         min.createStack(size);
+         int ch;
+         do
+         {
+           System.out.println("\n1.Push\n2.Pop\n3.Peek\n4.Print\n5.Print Min\n0.Exit\n:");
+           ch=in.nextInt();//read
+           switch(ch)
+           {
+               case 1:
+                   if(!stack.is_full())
+                   {
+                       System.out.println("\nEnter a number:");
+                       int no=in.nextInt();
+                       stack.push(no);
+                       if(min.is_empty())//no entries in it
+                           min.push(no);
+                       
+                       else
+                       {
+                           if(no<min.peek())
+                           {
+                               min.push(no);
+                               System.out.println("Pushed on min "+no);
+                           }
+                       }
+                       System.out.println("Pushed "+no);
+                   }
+                   else
+                       System.out.println("Stack is Full");
+                   break;
+               case 2:
+                    if(!stack.is_empty())
+                   {
+                       if(stack.peek()==min.peek())
+                           System.out.println("Poped from both"+stack.pop()+","+min.pop());
+                       else
+                           System.out.println("Poped:"+stack.pop());
+                   }
+                   else
+                       System.out.println("Stack is Empty");
+                   break;
+               case 3:
+                    if(!stack.is_empty())
+                   {
+                       System.out.println("Element at peek: "+stack.peek());
+                   }
+                   else
+                       System.out.println("Stack is Empty");
+                   break;
+               case 4:
+                    if(!stack.is_empty())
+                   {
+                       System.out.println("Elements on stack are");
+                       stack.print_stack();
+                   }
+                    else
+                       System.out.println("Stack is Empty");
+                   break;
+                   
+               case 5:
+                    if(!min.is_empty())
+                   {
+                       System.out.println("Min is: "+min.peek());
+                   }
+                   else
+                       System.out.println("Stack is Empty");
+                   break;
+                   
+               case 0:
+                       System.out.println("Exiting");
+                   break;
+               default:
+                       System.out.println("Wrong Choice");
+                   break;
+           }   
+         }while(ch!=0);      
+     }
+}
+------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------Dec_to_Binary -----------------------------------------
+package Stack_Data;
+
+import java.util.Scanner;
+
+public class Dec_to_Binary 
+{
+      int stack[],tos,MaxSize;
+    
+    void createStack(int size)
+    {
+        stack=new int[size];
+        MaxSize=size;
+        tos=-1;
+    }
+    void push(int e)
+    {
+        tos++;
+        stack[tos]=e;
+        //or stack[++tos]=e;
+    }
+    int pop()
+    {
+        int temp=stack[tos];
+        tos--;
+        return(temp);
+    }
+    int peek()
+    {
+        return(stack[tos]);
+    }
+    boolean is_full()
+    {
+        if(tos==MaxSize-1)
+            return true;
+        else
+            return false;
+    }
+     boolean is_empty()
+    {
+        if(tos==-1)
+            return true;
+        else
+            return false;
+    }
+     
+     void print_stack()
+     {
+         for(int i=tos;i>-1;i--)
+             System.out.println(stack[i]);
+     }
+    
+     public static void main(String args[])
+     {
+         Scanner in=new Scanner(System.in);
+         Dec_to_Binary  obj=new Dec_to_Binary ();
+         System.out.println("number:");
+         int no=in.nextInt();
+         obj.createStack(16);
+         while(no>0)
+         {
+             int binary_digit=no%2;
+             no=no/2;
+             obj.push(binary_digit);
+         }  
+         while(!obj.is_empty())
+         {
+             System.out.print(obj.pop());
+         }
+     }
+  }    
+}
+--------------------------------------------------------------------------------------------------------------------
