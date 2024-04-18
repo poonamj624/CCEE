@@ -1,3 +1,4 @@
+import java.util.concurrent.locks.*;
 public class Transaction
 {
 	public static void main(String args[])
@@ -13,15 +14,18 @@ public class Transaction
 }
 class Monitor
 {
+	ReentrantLock mylock=new ReentrantLock();
+	Condition value=mylock.newCondition();
 	int token;
 	boolean value_set;
-	synchronized public void set(int k)
+	public void set(int k)
 	{
+		mylock.lock();
 		while(value_set)
 		{
 			try
 			{
-				wait();
+				value.await();
 			}
 			catch(InterruptedException ie)
 			{
@@ -29,16 +33,18 @@ class Monitor
 		}
 		token=k;
 		System.out.println("Set  "+token);
-		notifyAll();
+		value.signalAll();
 		value_set=true;
+		mylock.unlock();
 	}
-	synchronized public int get()
+	public int get()
 	{
+		mylock.lock();
 		while(!value_set)
 		{
 			try
 			{
-				wait();
+				value.await();
 			}
 			catch(InterruptedException ie)
 			{
@@ -46,7 +52,8 @@ class Monitor
 		}
 		value_set=false;
 		System.out.println("Get  "+token);
-		notifyAll();
+		value.signalAll();
+		mylock.unlock();
 		return token;
 	}
 }
