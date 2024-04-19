@@ -1,0 +1,11 @@
+The garbage collection cycles in the young generation (eden and survivor spaces) are considered minor garbage collection. The garbage collection cycles in the old generation (tenured space) is known as old garbage collection or major garbage collection because it takes longer than minor garbage collection.
+
+Major GC cleans up the old generation. The task of Major GC is as same as the minor GC, but the only difference is minor GC reclaims the memory of the young generation whereas Major GC reclaims the memory of the old generation. 
+
+
+New object created is kept in Eden inside Young generation.
+Once Eden is full, a Minor GC happened to clear Eden ,removed unused objects and move the survivor objects to Survivor space. When Survivor space is full, they are moved to Old Generation by the Minor GC. Minor GC takes less time as the memory area of Young generation is small. To clean up Old Generation once it is full, Major GC happens which takes more time as the memory area of Old generation is big.
+
+System.gc() triggers a major GC.
+
+
