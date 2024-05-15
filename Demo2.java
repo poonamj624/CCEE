@@ -1,28 +1,22 @@
-// class lock with ReentrantLock  
-import java.util.concurrent.locks.*;
-public class Demo2 implements Runnable
+import java.util.ArrayList;
+import java.util.List;
+
+public class Demo2
 {
-	static ReentrantLock mylock=new ReentrantLock();
-	static void disp()
-	{
-		mylock.lock();
-		for(int i=0;i<5;i++)
-		{	
-			System.out.println("Hello"+i);
-		}
-		mylock.unlock();
-	}
-	public void run()
-	{
-		disp();
-	}
-	public static void main(String args[])
-	{
-		Demo2 ob1=new Demo2();
-		Demo2 ob2=new Demo2();
-		Thread t1=new Thread(ob1);
-		Thread t2=new Thread(ob2);
-		t1.start();
-		t2.start();
-	}
+private static int sumIterator(List<Integer> list) 
+{
+	return list.stream().filter(i -> i > 10).mapToInt(i -> i).sum();
 }
+public static void main(String args[])
+{
+	List<Integer> mylist=new ArrayList<Integer>();
+	mylist.add(4);
+	mylist.add(12);
+	mylist.add(3);
+	mylist.add(20);
+	int result=sumIterator(mylist);
+	System.out.println(result);
+}
+}
+
+
